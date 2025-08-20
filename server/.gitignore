@@ -1,0 +1,45 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Environment & secrets
+*.env
+*.secret
+secrets.json
+
+# Logs
+*.log
+
+# Database (local only — don’t push SQLite!)
+*.sqlite3
+*.db
+
+# Build / Distribution files
+build/
+dist/
+*.egg-info/
+
+# IDE / Editor stuff
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
