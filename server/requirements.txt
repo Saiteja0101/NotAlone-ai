@@ -6,3 +6,4 @@ python-dotenv
 groq
 pyJWT
 pydantic
+passlib[bcrypt]
