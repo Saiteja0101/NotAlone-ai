@@ -4,6 +4,9 @@ import "../styles/globals.css";
 export const metadata: Metadata = {
   title: "NotAlone AI",
   description: "Share your feelings with AI",
+  icons: {
+    icon: '/NotAlone-ai.png'
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
