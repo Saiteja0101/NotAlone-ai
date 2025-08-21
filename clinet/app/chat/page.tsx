@@ -24,9 +24,9 @@ export default function ChatPage() {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-
+    //const localUrl = "http://127.0.0.1:8000/chat"
     try {
-      const response = await fetch("http://127.0.0.1:8000/chat", {
+      const response = await fetch("https://notalone-ai-production.up.railway.app/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
