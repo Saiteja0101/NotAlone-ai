@@ -7,12 +7,16 @@ import Link from "next/link";
 
 export default function ChatPage() {
   const router = useRouter()
-  const token = localStorage.getItem("token")
+  const [token, setToken] = useState<string | null>(null);
+
   useEffect(() => {
-    if (!token) {
-      router.replace('/')
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+    if (!storedToken) {
+      router.replace("/");
     }
-  }, [token, router])
+  }, [router]);
+
 
   const [messages, setMessages] = useState<{ role: string; text: string }[]>([]);
   const [input, setInput] = useState("");
@@ -32,8 +36,10 @@ export default function ChatPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Something went wrong");
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Something went wrong");
       }
+
 
       const data = await response.json();
 
@@ -88,8 +94,8 @@ export default function ChatPage() {
             >
               <div
                 className={`px-4 py-2 rounded-2xl max-w-[75%] sm:max-w-[60%] text-sm sm:text-base break-words shadow-sm ${msg.role === "user"
-                    ? "bg-blue-500 text-white rounded-br-none"
-                    : "bg-gray-200 text-gray-900 rounded-bl-none"
+                  ? "bg-blue-500 text-white rounded-br-none"
+                  : "bg-gray-200 text-gray-900 rounded-bl-none"
                   }`}
               >
                 {msg.text}
@@ -111,14 +117,19 @@ export default function ChatPage() {
           />
           <button
             onClick={sendMessage}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm sm:text-base shadow-sm transition-colors"
+            disabled={!input.trim()}
+            className={`px-5 py-2 rounded-full text-sm sm:text-base shadow-sm transition-colors ${input.trim()
+                ? "bg-blue-500 hover:bg-blue-600 text-white"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
           >
             Send
           </button>
+
         </div>
         <p className="text-sm text-gray-800 mt-2 text-center font-bold">
-        Hold on to the light of positives, and let me bear the weight of the negatives ☺️
-      </p>
+          Hold on to the light of positives, and let me bear the weight of the negatives ☺️
+        </p>
       </footer>
 
       {/* Animation styles */}
