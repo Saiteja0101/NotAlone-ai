@@ -18,10 +18,10 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted:", form);
-
+    //console.log("Form Submitted:", form);
+    //const localUrl = "http://127.0.0.1:8000/auth"
     try {
-      const response = await fetch("http://127.0.0.1:8000/auth", {
+      const response = await fetch("https://notalone-ai-production.up.railway.app/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
