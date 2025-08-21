@@ -5,6 +5,10 @@ from models import usermodel
 
 app = FastAPI()
 
+origins = [
+    "https://not-alone-ai.vercel.app",   # your Vercel frontend
+    "http://localhost:3000"              
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
