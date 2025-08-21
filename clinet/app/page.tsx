@@ -11,7 +11,7 @@ export default function RegisterPage() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [buttonName, setButtonName] = useState(true)
   const [loading, setLoading] = useState(false);
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -38,8 +38,6 @@ export default function RegisterPage() {
 
       // Save token to localStorage
       localStorage.setItem("token", data.token);
-
-      alert("Welcome to NotAlone Ai");
       router.replace("/home");
 
     } catch (err) {
@@ -121,13 +119,17 @@ export default function RegisterPage() {
 
           <p className="text-sm text-gray-600 text-center mt-6">
             {buttonName ? "Don't have an account? " : "Already have an account? "}
-            <Link
-              onClick={() => setButtonName((prev) => !prev)}
-              href="/"
+            <button
+              type="button"
+              onClick={() => {
+                setButtonName((prev) => !prev);
+                router.replace("/");
+              }}
               className="text-indigo-600 font-medium hover:underline"
             >
               {buttonName ? "Register" : "Login"}
-            </Link>
+            </button>
+
           </p>
         </div>
       </div>

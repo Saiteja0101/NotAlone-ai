@@ -1,16 +1,23 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
   const router = useRouter()
-  const token = localStorage.getItem('token')
+  const [token, setToken] = useState<string | null>(null);
+
   useEffect(() => {
-    if (!token) {
-      router.replace('/')
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+    if (!storedToken) {
+      router.replace("/");
     }
-  }, [token, router])
+  }, [router]);
+
+  if (token === undefined) {
+    return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  }
 
   const handleSubmit = () => {
     localStorage.removeItem('token')
