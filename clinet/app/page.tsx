@@ -21,7 +21,7 @@ export default function RegisterPage() {
     //console.log("Form Submitted:", form);
     //const localUrl = "http://127.0.0.1:8000/auth"
     try {
-      const response = await fetch("https://notalone-ai-production.up.railway.app/auth", {
+      const response = await fetch("https://notalone-ai.onrender.com/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
