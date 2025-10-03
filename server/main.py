@@ -6,7 +6,8 @@ from models import usermodel
 app = FastAPI()
 
 origins = [
-    "https://not-alone-ai.vercel.app",   # your Vercel frontend
+    "https://not-alone-ai.vercel.app", 
+    "https://notalone-ai.onrender.com",
     "http://localhost:3000"              
 ]
 app.add_middleware(
